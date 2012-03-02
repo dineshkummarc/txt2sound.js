@@ -2,11 +2,11 @@
 
 txt2sound.js converts text to live audio:
 
-`<script>
+```javascript
 txt2sound.setText('this is my text');
 txt2sound.play();
 txt2sound.stop();
-</script>`
+```
 
 ## dependencies
 
