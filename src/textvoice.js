@@ -80,5 +80,6 @@ var txt2sound = (function (module) {
 	audioLib.generators('TextVoice', TextVoice);
 
 	return module;
-}(txt2sound || {});
+
+})(txt2sound || {});
 

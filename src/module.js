@@ -19,8 +19,8 @@ var txt2sound = (function (module) {
 		}
 	};
 	
-	device = audioLib.AudioDevice(audioCallback, channels);
-	transformer = audioLib.generators.Transformer(device.sampleRate, channels, initialTempo, initialKey, initialOctave);
+	device = audioLib.AudioDevice(audioCallback, module.channels);
+	transformer = audioLib.generators.Transformer(device.sampleRate, module.channels, initialTempo, initialKey, initialOctave);
 	
 	module.transformer = transformer;
 	
