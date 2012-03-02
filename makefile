@@ -1,6 +1,6 @@
 SOURCE := src/*.js
 
-IN := src/core.js src/textvoice.js src/samples.js src/transformer.js src/module.js
+IN := src/core.js src/textvoice.js src/transformer.js src/module.js
 OUT := lib/txt2sound.js
 OUT_MIN := lib/txt2sound.min.js
 RELEASE := txt2sound.js.tar.gz

@@ -17,33 +17,6 @@ var txt2sound = (function (module) {
 		for (var i = 0; i < this.previousSize; i++) {
 			this.previousChars[i] = ' ';
 		}
-		
-		this.kickSampler = audioLib.Sampler(this.sampleRate);
-		this.snareSampler = audioLib.Sampler(this.sampleRate);
-		this.hatSampler = audioLib.Sampler(this.sampleRate);
-				
-		this.kickSampler.loadWav(module.kickSample, true);
-		this.snareSampler.loadWav(module.snareSample, true);
-		this.hatSampler.loadWav(module.hatSample, true);
-		
-		for (var i = 0; i < 32; i++) {
-			this.kickSequence[i] = this.snareSequence[i] = 0;
-			if (i % 2 === 0) {
-				this.hatSequence[i] = 1;
-			}
-		}		
-		
-		this.hatSequence[0] = 1;
-		this.kickSequence[0] = 1;
-		this.snareSequence[4] = 1;
-		this.snareSequence[12] = 1;
-		this.kickSequence[15] = 1;
-		this.kickSequence[16] = 1;
-		this.snareSequence[20] = 1;
-		this.kickSequence[26] = 1;
-		this.snareSequence[28] = 1;
-		
-		this.drumStep = this.kickSequence.length + 1;
 	}
 	
 	Transformer.prototype = {
@@ -58,7 +31,6 @@ var txt2sound = (function (module) {
 		allPitches:		[],
 		keyPitches:		[],
 		samplesLeft:	0,
-		drumSamplesLeft: 0,
 		beatLength:		0,
 		beatFactor:		0,
 		text:			'',
@@ -83,14 +55,6 @@ var txt2sound = (function (module) {
 		lfoAmount:		0,
 		waveShape:		'sine',
 		lfoWaveShape:	'sine',
-		kickSampler:	null,
-		snareSampler:	null,
-		hatSampler:		null,
-		kickSequence:	[],
-		snareSequence:	[],
-		hatSequence:	[],
-		drumStep:		0,
-		drumsEnabled:	true,
 		
 		generate: function () {
 		
@@ -143,29 +107,6 @@ var txt2sound = (function (module) {
 				} 
 			}
 			
-			this.drumSamplesLeft--;
-			if (this.drumSamplesLeft <= 0) {
-				this.drumSamplesLeft = this.beatLength;
-				this.drumStep++;
-				if (this.drumStep >= this.kickSequence.length) {
-					this.drumStep = 0;
-				}
-				
-				if (this.drumsEnabled) {
-					if (this.hatSequence[this.drumStep] === 1) {
-						this.hatSampler.noteOn(440);
-					}
-
-					if (this.kickSequence[this.drumStep] === 1) {
-						this.kickSampler.noteOn(440);
-					}
-					
-					if (this.snareSequence[this.drumStep] === 1) {
-						this.snareSampler.noteOn(440);
-					}
-				}
-			}
-			
 			var sample = 0;
 
 			if (this.voices.length > 0){
@@ -183,25 +124,11 @@ var txt2sound = (function (module) {
 				
 			}
 			
-			if (this.drumsEnabled) {
-			}
-						
 			this.reverb.pushSample(sample, 0);
 			this.reverb.pushSample(sample, 1);
 			this.leftSample = this.reverb.getMix(0);
 			this.rightSample = this.reverb.getMix(1);
-			
-			if (this.drumsEnabled) {
-				this.hatSampler.generate();
-				this.kickSampler.generate();
-				this.snareSampler.generate();
-				var kick = this.kickSampler.getMix() * .2;
-				var snare = this.snareSampler.getMix() * .1;
-				var hat = this.hatSampler.getMix() * .05;
-
-				this.leftSample += kick + snare + hat;
-				this.rightSample += kick + snare + hat;
-			}
+		
 		},
 		
 		getVoice: function (frequency) {
@@ -352,7 +279,6 @@ var txt2sound = (function (module) {
 		
 		changeKey: function (newKey) {
 			this.key = newKey;
-			//this.allPitches = this.getAllPitches();
 			this.keyPitches = this.getKeyPitches();
 		},
 		

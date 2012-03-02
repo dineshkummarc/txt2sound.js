@@ -28,12 +28,6 @@
 		$('#textInput').live('keyup', textInputKeyup);
 		textInputKeyup();
 		
-		txt2sound.transformer.drumsEnabled ? $('#drumsCheckBox').attr('checked', 'true') : false;
-		
-		$('#drumsCheckBox').change(function () {
-			txt2sound.transformer.drumsEnabled = $('#drumsCheckBox').attr('checked');
-		});
-		
 		$('#lfoHzSlider').slider( {
 			min: 0,
 			max: 200,

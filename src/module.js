@@ -33,7 +33,6 @@ var txt2sound = (function (module) {
 	module.stop = function () {
 		if (playing) {
 			playing = false;
-			txt2sound.transformer.drumStep = txt2sound.transformer.kickSequence.length + 1;
 		}
 	};
 	
