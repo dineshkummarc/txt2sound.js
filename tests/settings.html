@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Transformer tests</title>
+	<link rel="stylesheet" href="styles/qunit.css" type="text/css" media="screen" />
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="../external/audiolib.0.6.1.min.js"></script>
+	<script type="text/javascript" src="js/qunit.js"></script>
+	<script type="text/javascript" src="../src/core.js"></script>
+	<script type="text/javascript" src="../src/textvoice.js"></script>
+	<script type="text/javascript" src="../src/samples.js"></script>
+	<script type="text/javascript" src="../src/transformer.js"></script>
+	<script type="text/javascript" src="../src/module.js"></script>
+	
+    <script type="text/javascript">
+
+test('settings test', function () {
+
+	txt2sound.settings( { tempo: 123, });
+	equal(txt2sound.transformer.tempo, 123, 'tempo equal');
+
+	txt2sound.settings( { octave: 1 });
+	equal(txt2sound.transformer.octave, 1, 'octave equal');
+
+	txt2sound.settings( { waveShape: 'invSawtooth' });
+	equal(txt2sound.transformer.waveShape, 'invSawtooth' );
+
+	txt2sound.settings( { attack: 321, release: 432, noteLength: 543 });
+	equal(txt2sound.transformer.noteAttack, 321, 'note attack');
+	equal(txt2sound.transformer.noteRelease, 432, 'release');
+	equal(txt2sound.transformer.noteLength, 543, 'note length');
+
+	txt2sound.settings( { lfoFrequency: 17.6, lfoAmount: 0.3, lfoWaveShape: 'square' });
+	equal(txt2sound.transformer.lfoFrequency, 17.6, 'lfo hz');
+	equal(txt2sound.transformer.lfoAmount, 0.3, 'lfo amount');
+	equal(txt2sound.transformer.lfoWaveShape, 'square', 'lfowave shape');
+
+	txt2sound.settings( { reverbWet: .13, reverbDry: .43, reverbSize: .76 });
+	equal(txt2sound.transformer.reverb.wet, .13, 'reverb wet');
+	equal(txt2sound.transformer.reverb.dry, .43, 'reverb dry');
+	equal(txt2sound.transformer.reverb.roomSize, .76, 'room size');
+
+
+});    
+
+    </script>
+
+</head>
+<body>
+	<h1 id="qunit-header">transformer tests</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+	<div id="qunit-fixture">test markup, will be hidden</div>
+</body>
+</html>

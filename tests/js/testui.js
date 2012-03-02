@@ -33,8 +33,8 @@
 			max: 200,
 			step: .1,
 			value: txt2sound.transformer.lfoFrequency,
-			change: function (event, ui) { txt2sound.transformer.lfoFrequency = ui.value; },
-			slide: function (event, ui) { txt2sound.transformer.lfoFrequency = ui.value; }
+			change: function (event, ui) { txt2sound.settings( {lfoFrequency: ui.value}); },
+			slide: function (event, ui) { txt2sound.settings( {lfoFrequency: ui.value}); }
 		});
 		
 		$('#lfoAmountSlider').slider( {
