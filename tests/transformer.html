@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Transformer tests</title>
+	<link rel="stylesheet" href="styles/qunit.css" type="text/css" media="screen" />
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="../external/audiolib.min.js"></script>
+	<script type="text/javascript" src="js/qunit.js"></script>
+	<script type="text/javascript" src="../src/txt2sound.js"></script>
+
+    <script type="text/javascript">
+
+test('init test', function () {
+
+    var sampleRate = 44100;
+    var channels = 2;
+    var tempo = 100;
+    var expectedBeatLength = Math.floor(sampleRate * 60 / tempo);
+
+    var transformer = new audioLib.generators.Transformer(sampleRate, channels, tempo);
+
+    equal(sampleRate, transformer.sampleRate, 'sample rates not equal');
+    equal(expectedBeatLength, transformer.beatLength, 'beat length incorrect');
+        
+    var allPitches = transformer.allPitches;
+
+    ok(transformer.allPitches != undefined, 'pitches undefined');
+    equal(allPitches.length, 88, 'unexpected pitches length');
+    ok(Math.abs(allPitches[0] - 27.500) < .1, 'first pitch incorrect ' + allPitches[0]);
+
+
+});    
+
+module('keys and pitches');
+
+test('octave 1, A major pitches', function () {
+    var sampleRate = 44100;
+    var channels = 2;
+    var tempo = 100;
+    var transformer = new audioLib.generators.Transformer(sampleRate, channels, tempo);
+	
+	transformer.setOctave(1);
+	transformer.setKey('a');
+	var keyPitches = transformer.keyPitches;
+	
+	ok(Math.abs(keyPitches[0] - 55.00) < .1, 'first pitch correct');
+	ok(Math.abs(keyPitches[2] - 69.3) < .1, 'third pitch correct ' + keyPitches[2]);
+	ok(Math.abs(keyPitches[3] - 73.41) < .1, 'fourth pitch correct ' + keyPitches[3]);
+	ok(Math.abs(keyPitches[4] - 82.4) < .1, 'pitch correct ' + keyPitches[4]);
+	ok(Math.abs(keyPitches[5] - 92.5) < .1, 'pitch correct ' + keyPitches[5]);
+	ok(Math.abs(keyPitches[6] - 103.8) < .1, 'pitch correct ' + keyPitches[6]);
+	ok(Math.abs(keyPitches[7] - 110) < .1, 'pitch correct ' + keyPitches[7]);
+	
+});
+
+test('octave 3, F# major pitches', function () {
+    var sampleRate = 44100;
+    var channels = 2;
+    var tempo = 100;
+    var transformer = new audioLib.generators.Transformer(sampleRate, channels, tempo);
+	
+	transformer.setOctave(3);
+	transformer.setKey('F#');
+	var keyPitches = transformer.keyPitches;
+	
+	ok(Math.abs(keyPitches[0] - 184.997) < .1, 'first pitch correct');
+	ok(Math.abs(keyPitches[2] - 233.082) < .1, 'third pitch correct ' + keyPitches[2]);
+	ok(Math.abs(keyPitches[3] - 246.942) < .1, 'fourth pitch correct ' + keyPitches[3]);
+	ok(Math.abs(keyPitches[4] - 277.183) < .1, 'pitch correct ' + keyPitches[4]);
+	ok(Math.abs(keyPitches[5] - 311.127) < .1, 'pitch correct ' + keyPitches[5]);
+	ok(Math.abs(keyPitches[6] - 349.228) < .1, 'pitch correct ' + keyPitches[6]);
+	ok(Math.abs(keyPitches[7] - 369.994) < .1, 'pitch correct ' + keyPitches[7]);
+	
+});
+
+test('octave 5, cb major pitches', function () {
+    var sampleRate = 44100;
+    var channels = 2;
+    var tempo = 100;
+    var transformer = new audioLib.generators.Transformer(sampleRate, channels, tempo);
+	
+	transformer.setOctave(5);
+	transformer.setKey('Cb');
+	var keyPitches = transformer.keyPitches;
+	
+	ok(Math.abs(keyPitches[0] - 493.883) < .1, 'first pitch correct');
+	ok(Math.abs(keyPitches[2] - 622.254) < .1, 'third pitch correct ' + keyPitches[2]);
+	ok(Math.abs(keyPitches[3] - 659.255) < .1, 'fourth pitch correct ' + keyPitches[3]);
+	ok(Math.abs(keyPitches[4] - 739.989) < .1, 'pitch correct ' + keyPitches[4]);
+	ok(Math.abs(keyPitches[5] - 830.609) < .1, 'pitch correct ' + keyPitches[5]);
+	ok(Math.abs(keyPitches[6] - 932.328) < .1, 'pitch correct ' + keyPitches[6]);
+	ok(Math.abs(keyPitches[7] - 987.767) < .1, 'pitch correct ' + keyPitches[7]);
+	
+});
+
+test('octave 2, C minor pitches', function () {
+    var sampleRate = 44100;
+    var channels = 2;
+    var tempo = 100;
+    var transformer = new audioLib.generators.Transformer(sampleRate, channels, tempo);
+	
+	transformer.setOctave(2);
+	transformer.setKey('Cmin');
+	var keyPitches = transformer.keyPitches;
+	
+	ok(Math.abs(keyPitches[0] - 65.4064) < .1, 'first pitch correct');
+	ok(Math.abs(keyPitches[1] - 73.4162) < .1, 'pitch correct ' + keyPitches[1]);
+	ok(Math.abs(keyPitches[2] - 77.7817) < .1, 'pitch correct ' + keyPitches[2]);
+	ok(Math.abs(keyPitches[3] - 87.3071) < .1, 'pitch correct ' + keyPitches[3]);
+	ok(Math.abs(keyPitches[4] - 97.9989) < .1, 'pitch correct ' + keyPitches[4]);
+	ok(Math.abs(keyPitches[5] - 103.826) < .1, 'pitch correct ' + keyPitches[5]);
+	ok(Math.abs(keyPitches[6] - 116.541) < .1, 'pitch correct ' + keyPitches[6]);
+	ok(Math.abs(keyPitches[7] - 130.813) < .1, 'pitch correct ' + keyPitches[7]);
+	
+});
+
+module('text to hz mapping');
+
+test('basic', function () {
+    var sampleRate = 44100;
+    var channels = 2;
+    var tempo = 100;
+    var transformer = new audioLib.generators.Transformer(sampleRate, channels, tempo);
+	var text = "=this@ is.a }te,st; ?!"
+	
+	transformer.setText(text);
+	transformer.setOctave(1);
+	transformer.setKey('C');
+	var keyPitches = transformer.keyPitches;
+	
+	equal(transformer.getPitchAtPosition(-1), 0, transformer.getPitchAtPosition(-1));
+	equal(transformer.getPitchAtPosition(0), 0, transformer.getPitchAtPosition(0));
+	ok(Math.abs(transformer.getPitchAtPosition(1) - 220) < .1, transformer.getPitchAtPosition(1));
+	ok(Math.abs(transformer.getPitchAtPosition(2) - 65.4064) < .1, transformer.getPitchAtPosition(2));
+	ok(Math.abs(transformer.getPitchAtPosition(3) - 73.4162) < .1, transformer.getPitchAtPosition(3));
+	ok(Math.abs(transformer.getPitchAtPosition(4) - 195.998) < .1, transformer.getPitchAtPosition(4));
+	equal(transformer.getPitchAtPosition(5), 0, transformer.getPitchAtPosition(5));
+	equal(transformer.getPitchAtPosition(6), 0, transformer.getPitchAtPosition(6));
+	ok(Math.abs(transformer.getPitchAtPosition(7) - 73.4162) < .1, transformer.getPitchAtPosition(7));
+	ok(Math.abs(transformer.getPitchAtPosition(8) - 195.998) < .1, transformer.getPitchAtPosition(8));
+	equal(transformer.getPitchAtPosition(9), 0, transformer.getPitchAtPosition(9));
+	ok(Math.abs(transformer.getPitchAtPosition(10) - 32.7032) < .1, transformer.getPitchAtPosition(10));
+	equal(transformer.getPitchAtPosition(11), 0, transformer.getPitchAtPosition(11));
+	equal(transformer.getPitchAtPosition(12), 0, transformer.getPitchAtPosition(12));
+	ok(Math.abs(transformer.getPitchAtPosition(13) - 220) < .1, transformer.getPitchAtPosition(13));
+	ok(Math.abs(transformer.getPitchAtPosition(14) - 48.9994) < .1, transformer.getPitchAtPosition(14));
+	equal(transformer.getPitchAtPosition(15), 0, transformer.getPitchAtPosition(15));
+	ok(Math.abs(transformer.getPitchAtPosition(16) - 195.998) < .1, transformer.getPitchAtPosition(16));
+	ok(Math.abs(transformer.getPitchAtPosition(17) - 220) < .1, transformer.getPitchAtPosition(17));
+	equal(transformer.getPitchAtPosition(18), 0, transformer.getPitchAtPosition(18));
+	equal(transformer.getPitchAtPosition(19), 0, transformer.getPitchAtPosition(19));
+	equal(transformer.getPitchAtPosition(20), 0, transformer.getPitchAtPosition(20));
+	equal(transformer.getPitchAtPosition(21), 0, transformer.getPitchAtPosition(21));
+	equal(transformer.getPitchAtPosition(22), 0, transformer.getPitchAtPosition(22));
+});
+
+    </script>
+
+</head>
+<body>
+	<h1 id="qunit-header">transformer tests</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+	<div id="qunit-fixture">test markup, will be hidden</div>
+</body>
+</html>

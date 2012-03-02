@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>txt2sound</title>
+	<link rel="stylesheet" href="styles/jquery-ui.css"/>	
+	<link rel="stylesheet" href="styles/testui.css"/>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../external/audiolib.min.js"></script>
+	<script type="text/javascript" src="../src/txt2sound.js"></script>
+	<script type="text/javascript" src="js/testui.js"></script>
+	
+</head>
+<body>
+	<div id="wrapper">
+	
+		<h1>txt2sound.js testing UI</h1>	
+		<div class="section">
+			
+				<div id="basicInput">
+					<p><textarea id="textInput">type something here. add some @special #characters. see what happens! audiolib.js and javascript. </textarea></p>
+				</div>
+				
+				<div>
+					<p><button id="playButton">Play</button></p>	
+				</div>
+				
+		</div>
+		
+		<div class="section">
+
+				
+					<p>Drums:
+						<input type="checkbox" id="drumsCheckBox"> Enabled
+					</p>
+
+					<p>Tempo:
+						<div id="tempoSlider"></div>
+					</p>
+
+					<p>Octave:<br/>
+						<div id="octaveSlider"></div>
+					</p>
+
+					<p>Wave form:<br/>
+						<select id="waveShapeSelect">
+							<option value="sine" selected="true">sine</option>
+							<option value="sawtooth">sawtooth</option>
+							<option value="invSawtooth">invSawtooth</option>
+							<option value="square">square</option>
+							<option value="triangle">triangle</option>
+						</select>
+					</p>
+
+					<p>Note Length:
+						<div id="noteLengthSlider"></div>
+					</p>
+
+					<p>Attack:
+						<div id="attackSlider"></div>
+					</p>
+
+					<p>Release:
+						<div id="releaseSlider"></div>
+					</p>
+
+					<p>LFO Wave form:<br/>
+						<select id="lfoWaveShapeSelect">
+							<option value="sine" selected="true">sine</option>
+							<option value="sawtooth">sawtooth</option>
+							<option value="invSawtooth">invSawtooth</option>
+							<option value="square">square</option>
+							<option value="triangle">triangle</option>
+						</select>
+					</p>
+
+					<p>LFO Hz:
+						<div id="lfoHzSlider"></div>
+					</p>
+
+					<p>LFO Amount:<br/>
+						<div id="lfoAmountSlider"></div>
+					</p>
+
+					<p>Reverb Dry:<br/>
+						<div id="reverbDrySlider"></div>
+					</p>
+
+					<p>Reverb Wet:<br/>
+						<div id="reverbWetSlider"></div>
+					</p>
+
+					<p>Reverb Size:<br/>
+						<div id="reverbSizeSlider"></div>
+					</p>
+					
+		</div>
+	</div>
+
+</body>
+</html>
