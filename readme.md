@@ -25,6 +25,7 @@ txt2sound.settings( { lfoFrequency: 14.5, lfoAmount: .3, lfoWaveShape: 'sawtooth
 
 // set envelope
 txt2sound.settings( { attack: 10, release: 100, noteLength: 200 } );
+```
 
 ## dependencies
 
