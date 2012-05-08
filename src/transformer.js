@@ -55,13 +55,21 @@ var txt2sound = (function (module) {
 		lfoAmount:		0,
 		waveShape:		'sine',
 		lfoWaveShape:		'sine',
+		hz:			0,
+		sample:			0,
 		
 		generate: function () {
 		
 			this.samplesLeft--;
+
+			// if there are no samples left, that means we need
+			// to move to the next character and create a new voice.
 			if (this.samplesLeft <= 0) {
 			
+				// reset # of samples left for the note
 				this.samplesLeft = this.beatLength;
+
+				// quickNoteOn means a fast note should be played.
 				if (this.quickNoteOn) {
 					this.samplesLeft = this.samplesLeft / 2;
 					this.quickNoteCount++;
@@ -71,27 +79,39 @@ var txt2sound = (function (module) {
 						this.quickNoteOn = false;
 					}
 				}
+
+				// change the position we're at in the text. 
 				this.incrementPosition();
-								
-				var hz = this.getPitchAtPosition(this.position);
-				var operator = 0;
+							
+				// get the pitch for the current character in the text
+				hz = this.getPitchAtPosition(this.position);
+
+				// if the position didn't equate to a pitch (e.g. it is a special char)
+				// then try to generate an operator from the position
 				if (hz === 0 && this.operator === 0) {
 					this.operator = this.getOperatorAtPosition(this.position);
 
+					// 2 = quick note
 					if (this.operator === 2) {
 						this.quickNoteOn = true;
 						this.incrementPosition();
 					}
-					
+				
 					if (this.operator === 3) {
 						this.incrementPosition();
 					}
 				}
 
+
+				// add a new voice to the voices array
 				this.voices.push( this.getVoice(hz) );
 
+
+				// did we add a real note?
 				if (hz != 0 && this.operator != 0) {
 					
+					// operator 1 means to play a chord at a given interval
+					// operator 3 plays a 3-note chord
 					if (this.operator === 1) { 
 						hz = hz * Math.pow(module.semitone, this.operatorInterval);
 						this.voices.push( this.getVoice(hz) );
@@ -103,13 +123,13 @@ var txt2sound = (function (module) {
 					}
 					
 					this.operator = 0;
-					
 				} 
 			}
 			
-			var sample = 0;
+			sample = 0;
 
 			if (this.voices.length > 0){
+				// TODO: move var delcaration to earlier in the object
 				var current = 0;
 				var length = this.voices.length;
 
@@ -123,7 +143,8 @@ var txt2sound = (function (module) {
 				}
 				
 			}
-			
+		
+			// effects and stereo stuff	
 			this.reverb.pushSample(sample, 0);
 			this.reverb.pushSample(sample, 1);
 			this.leftSample = this.reverb.getMix(0);
