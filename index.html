@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="txt2sound.js : a JavaScript library that converts text to live audio" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>txt2sound.js</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/kindohm/txt2sound.js">View on GitHub</a>
+
+          <h1 id="project_title">txt2sound.js</h1>
+          <h2 id="project_tagline">a JavaScript library that converts text to live audio</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/kindohm/txt2sound.js/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/kindohm/txt2sound.js/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>txt2sound.js</h1>
+
+<p>txt2sound.js converts text to live audio:</p>
+
+<div class="highlight">
+<pre><span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="s1">'this is my text'</span><span class="p">);</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+</pre>
+</div>
+
+
+<p>txt2sound.js supports a large variety of synthesis and effect controls:</p>
+
+<div class="highlight">
+<pre><span class="c1">// set tempo</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setTempo</span><span class="p">(</span><span class="mi">120</span><span class="p">);</span>
+
+<span class="c1">// set wave shape</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setWaveShape</span><span class="p">(</span><span class="s1">'triangle'</span><span class="p">);</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setWaveShape</span><span class="p">(</span><span class="s1">'square'</span><span class="p">);</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setWaveShape</span><span class="p">(</span><span class="s1">'sine'</span><span class="p">);</span>
+
+<span class="c1">// set reverb</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setReverbWet</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setReverbDry</span><span class="p">(</span><span class="mf">0.8</span><span class="p">);</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setReverbSize</span><span class="p">(</span><span class="mf">0.23</span><span class="p">);</span>
+
+<span class="c1">// set LFO</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setLfoFrequency</span><span class="p">(</span><span class="mf">14.5</span><span class="p">);</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setLfoAmount</span><span class="p">(</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setLfoWaveShape</span><span class="p">(</span><span class="s1">'sawtooth'</span><span class="p">);</span>
+
+<span class="c1">// set envelope</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setAttack</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setRelease</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="nx">txt2sound</span><span class="p">.</span><span class="nx">setNoteLength</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+</pre>
+</div>
+
+
+<h2>dependencies</h2>
+
+<p>txt2sound.js depends on audiolib.js. You can include audiolib.js from the <code>external</code> folder in this repository or obtain it directly from <a href="https://github.com/jussi-kalliokoski/audiolib.js">https://github.com/jussi-kalliokoski/audiolib.js</a>.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">txt2sound.js maintained by <a href="https://github.com/kindohm">kindohm</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
