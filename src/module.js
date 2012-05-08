@@ -1,10 +1,10 @@
 var txt2sound = (function (module) {
 
 	var device,
-		playing			= false,
+		playing		= false,
 		initialOctave	= 2,
 		initialTempo	= 240,
-		initialKey 		= 'D',
+		initialKey 	= 'D',
 		transformer;		
 
 	var audioCallback =  function (buffer, channelCount) {	
@@ -20,7 +20,8 @@ var txt2sound = (function (module) {
 	};
 	
 	device = audioLib.AudioDevice(audioCallback, module.channels);
-	transformer = audioLib.generators.Transformer(device.sampleRate, module.channels, initialTempo, initialKey, initialOctave);
+	transformer = audioLib.generators.Transformer(
+		device.sampleRate, module.channels, initialTempo, initialKey, initialOctave);
 	
 	module.transformer = transformer;
 	
@@ -107,9 +108,7 @@ var txt2sound = (function (module) {
 		if (!isNaN(settings.noteLength)) {
 			transformer.noteLength = settings.noteLength;
 		}
-
 	};
-
 		
 	return module;
 
