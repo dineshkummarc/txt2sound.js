@@ -23,8 +23,6 @@ var txt2sound = (function (module) {
 	transformer = audioLib.generators.Transformer(
 		device.sampleRate, module.channels, initialTempo, initialKey, initialOctave);
 	
-	module.transformer = transformer;
-	
 	module.play = function () {
 		if (!playing) {
 			playing = true;
@@ -57,59 +55,104 @@ var txt2sound = (function (module) {
 		transformer.charChanged = callback;
 	};
 
-	module.settings = function (settings) {
-
-		if (!isNaN(settings.tempo)) {
-			transformer.setTempo(settings.tempo);
-		}
-
-		if (!isNaN(settings.octave)) {
-			transformer.setOctave(settings.octave);
-		}
-
-		if (!isNaN(settings.reverbWet)) {
-			transformer.reverb.wet = settings.reverbWet;
-		}
-
-		if (!isNaN(settings.reverbDry)) {
-			transformer.reverb.dry = settings.reverbDry;
-		}
-
-		if (!isNaN(settings.reverbSize)) {
-			transformer.reverb = audioLib.Reverb(device.sampleRate,
-				module.channels, transformer.reverb.wet, transformer.reverb.dry,
-				settings.reverbSize, transformer.reverb.damping);
-		}
-
-		if (settings.waveShape != undefined) {
-			transformer.waveShape = settings.waveShape;
-		}
-
-		if (!isNaN(settings.lfoFrequency)) {
-			transformer.lfoFrequency = settings.lfoFrequency; 
-		}
-
-		if (!isNaN(settings.lfoAmount)) {
-			transformer.lfoAmount = settings.lfoAmount;
-		}
-
-		if (settings.lfoWaveShape != undefined) {
-			transformer.lfoWaveShape = settings.lfoWaveShape;
-		}
-
-		if (!isNaN(settings.attack)) {
-			transformer.noteAttack = settings.attack;
-		}
-
-		if (!isNaN(settings.release)) {
-			transformer.noteRelease = settings.release;
-		}
-
-		if (!isNaN(settings.noteLength)) {
-			transformer.noteLength = settings.noteLength;
-		}
+	module.setTempo = function (newTempo) {
+		transformer.setTempo(newTempo);
 	};
-		
+
+	module.getTempo = function () {
+		return transformer.tempo;
+	};
+
+	module.setOctave = function (newOctave) {
+		transformer.setOctave(newOctave);
+	};
+
+	module.getOctave = function () {
+		return transformer.octave;
+	};
+
+	module.setReverbWet = function (wet) {
+		transformer.reverb.wet = wet;
+	};
+
+	module.getReverbWet = function () {
+		return transformer.reverb.wet;
+	};
+
+	module.setReverbDry = function (dry) {
+		transformer.reverb.dry = dry;
+	};
+
+	module.getReverbDry = function () {
+		return transformer.reverb.dry; 
+	};
+
+	module.setReverbSize = function (size) {
+		transformer.reverb = audioLib.Reverb(device.sampleRate,
+			module.channels, transformer.reverb.wet, transformer.reverb.dry,
+			size, transformer.reverb.damping);
+	};
+
+	module.getReverbSize = function () {
+		return transformer.reverb.roomSize;
+	};
+
+	module.setWaveShape = function (newShape) {
+		transformer.waveShape = newShape;
+	};
+
+	module.getWaveShape = function () {
+		return transformer.waveShape;
+	};
+
+	module.setLfoFrequency = function (newHz) {
+		transformer.lfoFrequency = newHz;
+	};
+
+	module.getLfoFrequency = function () {
+		return transformer.lfoFrequency; 
+	};
+
+	module.setLfoAmount = function (newAmount) {
+		transformer.lfoAmount = newAmount;
+	};
+
+	module.getLfoAmount = function () {
+		return transformer.lfoAmount;
+	};	
+
+	module.setLfoWaveShape = function (newShape) {
+		transformer.lfoWaveShape = newShape;
+	};
+
+	module.getLfoWaveShape = function () {
+		return transformer.lfoWaveShape;
+	};
+
+	module.setAttack = function (attackValue) {
+		transformer.noteAttack = attackValue; 
+	};
+
+	module.getAttack = function () {
+		return transformer.noteAttack;
+	};
+
+	module.setRelease = function (releaseValue) {
+		transformer.noteRelease = releaseValue; 
+	};
+
+	module.getRelease = function () {
+		return transformer.noteRelease; 
+	};
+
+	module.setNoteLength = function (lengthValue) {
+		transformer.noteLength = lengthValue;
+	};
+
+	module.getNoteLength = function () {
+		return transformer.noteLength;
+	};
+
 	return module;
 
 })(txt2sound || {});

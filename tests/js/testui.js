@@ -32,97 +32,97 @@
 			min: 0,
 			max: 200,
 			step: .1,
-			value: txt2sound.transformer.lfoFrequency,
-			change: function (event, ui) { txt2sound.settings( {lfoFrequency: ui.value}); },
-			slide: function (event, ui) { txt2sound.settings( {lfoFrequency: ui.value}); }
+			value: txt2sound.getLfoFrequency(),
+			change: function (event, ui) { txt2sound.setLfoFrequency( ui.value ); },
+			slide: function (event, ui) { txt2sound.setLfoFrequency (ui.value ); }
 		});
 		
 		$('#lfoAmountSlider').slider( {
 			min: 0,
 			max: 1,
 			step: .01,
-			value: txt2sound.transformer.lfoAmount,
-			change: function (event, ui) { txt2sound.transformer.lfoAmount = ui.value; },
-			slide: function (event, ui) { txt2sound.transformer.lfoAmount = ui.value; }
+			value: txt2sound.getLfoAmount(),
+			change: function (event, ui) { txt2sound.setLfoAmount(ui.value); },
+			slide: function (event, ui) { txt2sound.setLfoAmount(ui.value); }
 		});
 		
 		$('#waveShapeSelect').change(function () {
-			txt2sound.transformer.waveShape = $('#waveShapeSelect').val();
+			txt2sound.setWaveShape ( $('#waveShapeSelect').val() );
 		});
 
 		$('#lfoWaveShapeSelect').change(function () {
-			txt2sound.transformer.lfoWaveShape = $('#lfoWaveShapeSelect').val();
+			txt2sound.setLfoWaveShape( $('#lfoWaveShapeSelect').val() );
 		});
 
 		$('#octaveSlider').slider({
 			min: 0,
 			max: 6,
-			value: txt2sound.transformer.octave,
+			value: txt2sound.getOctave(),
 			step: 1,
-			change: function (event, ui) { txt2sound.transformer.setOctave(ui.value); },
-			slide: function (event, ui) { txt2sound.transformer.setOctave(ui.value); } 
+			change: function (event, ui) { txt2sound.setOctave(ui.value); },
+			slide: function (event, ui) { txt2sound.setOctave(ui.value); }
 		});
 
 		$('#reverbDrySlider').slider({
 			min: 0,
 			max: 1,
-			value: txt2sound.transformer.reverb.dry,
+			value: txt2sound.getReverbDry(),
 			step: .01,
-			change: function (event, ui) { txt2sound.transformer.reverb.dry = ui.value; },
-			slide: function (event, ui) { txt2sound.transformer.reverb.dry = ui.value; } 
+			change: function (event, ui) { txt2sound.setReverbDry(ui.value); },
+			slide: function (event, ui) { txt2sound.setReverbDry(ui.value); }
 		});
 
 		$('#reverbWetSlider').slider({
 			min: 0,
 			max: 1,
-			value: txt2sound.transformer.reverb.wet,
+			value: txt2sound.getReverbWet(),
 			step: .01,
-			change: function (event, ui) { txt2sound.transformer.reverb.wet = ui.value; },
-			slide: function (event, ui) { txt2sound.transformer.reverb.wet = ui.value; } 
+			change: function (event, ui) { txt2sound.setReverbWet(ui.value); },
+			slide: function (event, ui) { txt2sound.setReverbWet(ui.value); } 
 		});
 
 		$('#reverbSizeSlider').slider({
 			min: 0,
 			max: 1,
-			value: txt2sound.transformer.reverb.roomSize,
+			value: txt2sound.getReverbSize(),
 			step: .01,
-			change: function (event, ui) { txt2sound.changeReverbSize(ui.value); }
+			change: function (event, ui) { txt2sound.setReverbSize(ui.value); }
 		});
 
 		$('#noteLengthSlider').slider({
 			min: 50,
 			max: 10000,
-			value: txt2sound.transformer.noteLength,
+			value: txt2sound.getNoteLength(),
 			step: 1,
-			change: function (event, ui) { txt2sound.transformer.noteLength = ui.value; },
-			slide: function (event, ui) { txt2sound.transformer.noteLength = ui.value; } 
+			change: function (event, ui) { txt2sound.setNoteLength (ui.value); },
+			slide: function (event, ui) { txt2sound.setNoteLength (ui.value); } 
 		});
 
 		$('#attackSlider').slider({
 			min: 1,
 			max: 1000,
-			value: txt2sound.transformer.noteAttack,
+			value: txt2sound.getAttack(),
 			step: 1,
-			change: function (event, ui) { txt2sound.transformer.noteAttack = ui.value; },
-			slide: function (event, ui) { txt2sound.transformer.noteAttack = ui.value; } 
+			change: function (event, ui) { txt2sound.setAttack (ui.value); },
+			slide: function (event, ui) { txt2sound.setAttack (ui.value); } 
 		});
 		
 		$('#releaseSlider').slider({
 			min: 1,
 			max: 1000,
-			value: txt2sound.transformer.noteRelease,
+			value: txt2sound.getRelease(),
 			step: 1,
-			change: function (event, ui) { txt2sound.transformer.noteRelease = ui.value; },
-			slide: function (event, ui) { txt2sound.transformer.noteRelease = ui.value; } 
+			change: function (event, ui) { txt2sound.setRelease(ui.value); },
+			slide: function (event, ui) { txt2sound.setRelease(ui.value); } 
 		});
 
 		$('#tempoSlider').slider({
 			min: 40,
 			max: 1000,
-			value: txt2sound.transformer.tempo,
+			value: txt2sound.getTempo(),
 			step: 1,
-			change: function (event, ui) { txt2sound.transformer.setTempo(ui.value); },
-			slide: function (event, ui) { txt2sound.transformer.setTempo(ui.value); } 
+			change: function (event, ui) { txt2sound.setTempo(ui.value); },
+			slide: function (event, ui) { txt2sound.setTempo(ui.value); } 
 		});
 	
 	
